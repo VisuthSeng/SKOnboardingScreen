@@ -28,7 +28,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       key: _globalKey,
       body: SKOnboardingScreen(
-        bgColor: Colors.red[50],
+        bgColor: Colors.red[100],
         themeColor: const Color(0xFFf74269),
         pages: pages,
         skipClicked: (value) {
@@ -52,22 +52,22 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final pages = [
     SkOnboardingModel(
         title: 'ស្វារគមន៌មកកាន់កម្មវិធីសម័យទំនើប',
-        description: 'ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់មាន ភាពងាយស្រួល',
+        description: 'ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/onboarding1.png'),
+        imagePath: 'assets/onboarding1.jpg'),
     SkOnboardingModel(
         title: 'រកនឹកចំណងជើងចម្រៀងមែនទេ?',
         description:
-            'នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែបលក្ខណះ ទៅតាមស្ថានភាព ទេសភាព។',
+            'នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែប ដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/onboarding2.png'),
+        imagePath: 'assets/onboarding2.jpg'),
     SkOnboardingModel(
-        title: 'តោ!សាកល្បងស្តាប់ទាំងអស់គ្នា',
-        description: 'កម្មវិធីបានបង្កើតឡើងដោយស្នាដែរកូនខ្មែរ',
+        title: 'តោះ!រីករាយសណ្តាប់កំសាន្តតន្ត្រីជាមួយខ្ញុំ',
+        description: 'កម្មវិធីនេះបានបង្កើតឡើងដោយស្នារដៃកូនខ្មែរ',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/onboarding3.png'),
+        imagePath: 'assets/onboarding3.jpg'),
   ];
 }

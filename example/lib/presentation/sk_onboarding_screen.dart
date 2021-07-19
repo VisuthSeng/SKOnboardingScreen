@@ -59,7 +59,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
       height: 8.0,
       width: isActive ? 24.0 : 16.0,
       decoration: BoxDecoration(
-        color: isActive ? widget.themeColor : Color(0xFF929794),
+        color: isActive ? Colors.black : Colors.grey,
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -97,7 +97,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                     ),
                   ),
                   Container(
-                    height: 600.0,
+                    height: 800,
                     color: Colors.transparent,
                     child: PageView(
                         physics: ClampingScrollPhysics(),
@@ -150,47 +150,88 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
 
   Widget _showPageData(SkOnboardingModel page) {
     Tween<double> scaletween = Tween<double>(begin: 1, end: 2);
-    return Padding(
-      padding: EdgeInsets.all(40.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Center(
-            child: TweenAnimationBuilder(
-                tween: scaletween,
-                duration: Duration(seconds: 2),
-                curve: Curves.linear,
-                child: Image(
-                  image: AssetImage(page.imagePath),
-                  height: 250.0,
-                  width: 250.0,
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(40.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 80,
+            ),
+            Center(
+              child: Container(
+                width: 250,
+                height: 200,
+                child: TweenAnimationBuilder(
+                    tween: scaletween,
+                    duration: Duration(seconds: 1),
+                    curve: Curves.linear,
+                    child: Image(
+                      image: AssetImage(page.imagePath),
+                      fit: BoxFit.contain,
+                    ),
+                    builder: (context, scale, child) {
+                      return Transform.scale(
+                        scale: scale,
+                        child: child,
+                      );
+                    }),
+              ),
+            ),
+            Spacer(),
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.mic_rounded,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                      Text(
+                        page.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: page.titleColor,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                builder: (context, scale, child) {
-                  return Transform.scale(
-                    scale: scale,
-                    child: child,
-                  );
-                }),
-          ),
-          SizedBox(height: 50.0),
-          Text(
-            page.title,
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              color: page.titleColor,
-              fontSize: 20,
+              ],
             ),
-          ),
-          SizedBox(height: 15.0),
-          Text(
-            page.description,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              color: page.descripColor,
-              fontSize: 16,
+            SizedBox(
+              height: 20,
             ),
-          ),
-        ],
+            Container(
+              height: 200,
+              width: 500,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.black,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: 20, top: 10),
+                child: Text(
+                  page.description,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.orange,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            Spacer(),
+          ],
+        ),
       ),
     );
   }
@@ -201,7 +242,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
       child: new Container(
         height: 50.0,
         decoration: new BoxDecoration(
-            color: widget.themeColor,
+            color: Colors.red,
             borderRadius: new BorderRadius.all(Radius.circular(6.0))),
         child: new Center(
           child: new Text(
