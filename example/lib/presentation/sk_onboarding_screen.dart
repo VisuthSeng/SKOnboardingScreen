@@ -2,7 +2,7 @@ library sk_onboarding_screen;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sk_onboarding_screen/sk_onboarding_model.dart';
+import 'package:example/model/sk_onboarding_model.dart';
 
 class SKOnboardingScreen extends StatefulWidget {
   final List<SkOnboardingModel> pages;
@@ -47,6 +47,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }
@@ -80,6 +81,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                 children: <Widget>[
                   Container(
                     alignment: Alignment.centerRight,
+                    // ignore: deprecated_member_use
                     child: FlatButton(
                       onPressed: () {
                         widget.skipClicked("Skip Tapped");
@@ -95,7 +97,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                     ),
                   ),
                   Container(
-                    height: 500.0,
+                    height: 600.0,
                     color: Colors.transparent,
                     child: PageView(
                         physics: ClampingScrollPhysics(),
@@ -147,19 +149,30 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
   }
 
   Widget _showPageData(SkOnboardingModel page) {
+    Tween<double> scaletween = Tween<double>(begin: 1, end: 2);
     return Padding(
       padding: EdgeInsets.all(40.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Center(
-            child: Image(
-              image: AssetImage(page.imagePath),
-              height: 300.0,
-              width: 300.0,
-            ),
+            child: TweenAnimationBuilder(
+                tween: scaletween,
+                duration: Duration(seconds: 2),
+                curve: Curves.linear,
+                child: Image(
+                  image: AssetImage(page.imagePath),
+                  height: 250.0,
+                  width: 250.0,
+                ),
+                builder: (context, scale, child) {
+                  return Transform.scale(
+                    scale: scale,
+                    child: child,
+                  );
+                }),
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 50.0),
           Text(
             page.title,
             style: TextStyle(
