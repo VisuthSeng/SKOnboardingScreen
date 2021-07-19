@@ -3,6 +3,7 @@ library sk_onboarding_screen;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:example/model/sk_onboarding_model.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class SKOnboardingScreen extends StatefulWidget {
   final List<SkOnboardingModel> pages;
