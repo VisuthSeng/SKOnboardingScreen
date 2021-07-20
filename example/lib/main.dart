@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'model/sk_onboarding_model.dart';
-import 'package:example/presentation/sk_onboarding_screen.dart';
+import 'package:example/presentation/onboarding_screen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
+    return GetMaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
 

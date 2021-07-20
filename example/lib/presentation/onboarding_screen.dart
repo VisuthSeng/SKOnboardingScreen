@@ -1,9 +1,12 @@
 library sk_onboarding_screen;
 
+import 'package:animate_do/animate_do.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:example/presentation/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:example/model/sk_onboarding_model.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:get/get.dart';
 
 class SKOnboardingScreen extends StatefulWidget {
   final List<SkOnboardingModel> pages;
@@ -121,7 +124,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                             child: Padding(
                               padding: EdgeInsets.only(right: 20, bottom: 10),
                               child: FloatingActionButton(
-                                backgroundColor: widget.bgColor,
+                                backgroundColor: Colors.black,
                                 child: Icon(
                                   Icons.arrow_forward,
                                   color: widget.themeColor,
@@ -144,19 +147,82 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
         ),
       ),
       bottomSheet: _currentPage == widget.pages.length - 1
-          ? _showGetStartedButton()
+          ? Container(color: Colors.red[100], child: _showGetStartedButton())
           : Text(''),
     );
   }
 
   Widget _showPageData(SkOnboardingModel page) {
     Tween<double> scaletween = Tween<double>(begin: 1, end: 2);
+    const colorizeColors = [
+      Colors.purple,
+      Colors.blue,
+      Colors.yellow,
+      Colors.red,
+    ];
+
+    const colorizeTextStyle = TextStyle(
+      fontSize: 24.0,
+      fontFamily: 'Horizon',
+      fontWeight: FontWeight.bold,
+    );
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.all(40.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            DefaultTextStyle(
+              style: const TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent),
+              child: Center(
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    WavyAnimatedText('Welcome to'),
+                  ],
+                  isRepeatingAnimation: true,
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: 800,
+              child: Center(
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    ColorizeAnimatedText(
+                      'KhmerDevelop',
+                      textStyle: colorizeTextStyle,
+                      colors: colorizeColors,
+                      speed: Duration(milliseconds: 200),
+                    ),
+                    ColorizeAnimatedText(
+                      'Enjoy Music with US',
+                      textStyle: colorizeTextStyle,
+                      colors: colorizeColors,
+                      speed: Duration(milliseconds: 200),
+                    ),
+                    ColorizeAnimatedText(
+                      'Volumn up and Feel the Music',
+                      textStyle: colorizeTextStyle,
+                      colors: colorizeColors,
+                      speed: Duration(milliseconds: 200),
+                    ),
+                  ],
+                  isRepeatingAnimation: true,
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                ),
+              ),
+            ),
             SizedBox(
               height: 80,
             ),
@@ -182,7 +248,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
             ),
             Spacer(),
             SizedBox(
-              height: 20,
+              height: 40,
             ),
             Column(
               children: [
@@ -195,12 +261,14 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                         size: 30,
                         color: Colors.black,
                       ),
-                      Text(
-                        page.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: page.titleColor,
-                          fontSize: 22,
+                      BounceInRight(
+                        child: Text(
+                          page.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: page.titleColor,
+                            fontSize: 22,
+                          ),
                         ),
                       ),
                     ],
@@ -211,21 +279,25 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              height: 200,
-              width: 500,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.black,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 20, top: 10),
-                child: Text(
-                  page.description,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: Colors.orange,
-                    fontSize: 20,
+            FlipInX(
+              child: Container(
+                height: 200,
+                width: 500,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.black,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20, top: 10),
+                  child: BounceInUp(
+                    child: Text(
+                      page.description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.orange,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -239,19 +311,19 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
 
   Widget _showGetStartedButton() {
     final GestureDetector loginButtonWithGesture = new GestureDetector(
-      onTap: _getStartedTapped,
+      onTap: () => Get.to(HomeA()),
       child: new Container(
-        height: 50.0,
+        height: 50,
         decoration: new BoxDecoration(
-            color: Colors.red,
+            color: Colors.red[200],
             borderRadius: new BorderRadius.all(Radius.circular(6.0))),
         child: new Center(
           child: new Text(
-            'Get Started',
+            'តោះចូលស្តាប់ជាមួយខ្ញុំ !!!',
             style: new TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 20.0,
-                fontWeight: FontWeight.w500),
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -265,5 +337,18 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
 
   void _getStartedTapped() {
     widget.getStartedClicked("Get Started Tapped");
+  }
+}
+
+class Square extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.blueAccent,
+      ),
+    );
   }
 }
