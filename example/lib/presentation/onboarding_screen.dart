@@ -2,7 +2,7 @@ library sk_onboarding_screen;
 
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:example/presentation/Homepage.dart';
+import 'package:example/presentation/Home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:example/model/sk_onboarding_model.dart';
@@ -311,7 +311,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
 
   Widget _showGetStartedButton() {
     final GestureDetector loginButtonWithGesture = new GestureDetector(
-      onTap: () => Get.to(HomeA()),
+      onTap: () => Get.to(HomeScreen()),
       child: new Container(
         height: 50,
         decoration: new BoxDecoration(
@@ -335,20 +335,8 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
         child: loginButtonWithGesture);
   }
 
+  // ignore: unused_element
   void _getStartedTapped() {
     widget.getStartedClicked("Get Started Tapped");
-  }
-}
-
-class Square extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.blueAccent,
-      ),
-    );
   }
 }
