@@ -147,7 +147,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
         ),
       ),
       bottomSheet: _currentPage == widget.pages.length - 1
-          ? Container(color: Colors.red[100], child: _showGetStartedButton())
+          ? Container(color: Colors.white, child: _showGetStartedButton())
           : Text(''),
     );
   }
@@ -180,7 +180,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
               child: Center(
                 child: AnimatedTextKit(
                   animatedTexts: [
-                    WavyAnimatedText('Welcome to'),
+                    WavyAnimatedText('Welcome'),
                   ],
                   isRepeatingAnimation: true,
                   onTap: () {
@@ -198,7 +198,7 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                 child: AnimatedTextKit(
                   animatedTexts: [
                     ColorizeAnimatedText(
-                      'KhmerDevelop',
+                      'to KhmerDevelop',
                       textStyle: colorizeTextStyle,
                       colors: colorizeColors,
                       speed: Duration(milliseconds: 200),

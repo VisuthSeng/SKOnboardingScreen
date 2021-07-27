@@ -20,7 +20,7 @@ class WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       key: _globalKey,
       body: SKOnboardingScreen(
-        bgColor: Colors.red[100],
+        bgColor: Colors.white,
         themeColor: const Color(0xFFf74269),
         pages: pages,
         skipClicked: (value) {
