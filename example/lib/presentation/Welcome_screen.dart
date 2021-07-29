@@ -44,22 +44,30 @@ class WelcomeScreenState extends State<WelcomeScreen>
   final pages = [
     SkOnboardingModel(
         title: 'ស្វារគមន៌មកកាន់កម្មវិធីសម័យទំនើប',
-        description: 'ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល',
+        txtheader: "ស្វារគមន៌",
+        header: "មកកាន់កម្មវិធីតន្ត្រីខ្មែរ",
+        description:
+            'ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល',
         titleColor: Colors.black,
-        descripColor: const Color(0xFF929794),
-        imagePath: 'assets/onboarding1.jpg'),
+        descripColor: Colors.purple,
+        imagePath: 'assets/1.png'),
     SkOnboardingModel(
         title: 'រកនឹកចំណងជើងចម្រៀងមែនទេ?',
+        txtheader: "",
+        header: 'រីករាយសណ្តាប់តន្ត្រីជាមួយយេីង',
         description:
-            'នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែប ដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត',
+            'នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែប ដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែប ដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/onboarding2.jpg'),
+        imagePath: 'assets/2.png'),
     SkOnboardingModel(
-        title: 'តោះ!រីករាយសណ្តាប់កំសាន្តតន្ត្រីជាមួយខ្ញុំ',
-        description: 'កម្មវិធីនេះបានបង្កើតឡើងដោយស្នារដៃកូនខ្មែរ',
+        title: 'សាកល្បងជាមួយបច្ចេកវិទ្យាថ្មីទាំងអស់គ្នា',
+        txtheader: "",
+        header: 'បណ្តែតអារម្មណ៌តាមភ្លេង',
+        description:
+            'កម្មវិធីនេះបានបង្កើតឡើងដោយស្នារដៃកូនខ្មែរ នៅក្នុងនេះពួកយើងបានចងក្រងជាច្រើនបែបដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/onboarding3.jpg'),
+        imagePath: 'assets/3.png'),
   ];
 }

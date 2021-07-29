@@ -6,24 +6,30 @@ class SkOnboardingDataTest {
     // ignore: await_only_futures
     var list = await [
       SkOnboardingModel(
-          title: 'ស្វារគមន៌មកកាន់កម្មវិធីសម័យទំនើប',
-          description: 'ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល',
-          titleColor: Colors.black,
-          descripColor: const Color(0xFF929794),
-          imagePath: 'assets/onboarding1.jpg'),
+        title: 'ស្វារគមន៌មកកាន់កម្មវិធីសម័យទំនើប',
+        header: "to Khmer Develop",
+        description: 'ផ្តោតសំខាន់ទៅលើការប្រើប្រាស់ នឹង ផ្តល់ភាពងាយស្រួល',
+        titleColor: Colors.black,
+        descripColor: const Color(0xFF929794),
+        imagePath: 'assets/onboarding1.jpg',
+      ),
       SkOnboardingModel(
-          title: 'រកនឹកចំណងជើងចម្រៀងមែនទេ?',
-          description:
-              'នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែប ដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត',
-          titleColor: Colors.black,
-          descripColor: const Color(0xFF929794),
-          imagePath: 'assets/onboarding2.jpg'),
+        title: 'រកនឹកចំណងជើងចម្រៀងមែនទេ?',
+        header: 'Enjoy Music with US',
+        description:
+            'នៅក្នុងនេះពួកយើងបានចងក្រង ជាច្រើនបែប ដែលលោកអ្នកអាចជ្រើសតាមចំណង់ចំណូលចិត្ត',
+        titleColor: Colors.black,
+        descripColor: const Color(0xFF929794),
+        imagePath: 'assets/onboarding2.jpg',
+      ),
       SkOnboardingModel(
-          title: 'តោះ!រីករាយសណ្តាប់កំសាន្តតន្ត្រីជាមួយខ្ញុំ',
-          description: 'កម្មវិធីនេះបានបង្កើតឡើងដោយស្នារដៃកូនខ្មែរ',
-          titleColor: Colors.black,
-          descripColor: const Color(0xFF929794),
-          imagePath: 'assets/onboarding3.jpg'),
+        title: 'តោះ!រីករាយសណ្តាប់កំសាន្តតន្ត្រីជាមួយខ្ញុំ',
+        header: 'Volumn up and Feel the Music',
+        description: 'កម្មវិធីនេះបានបង្កើតឡើងដោយស្នារដៃកូនខ្មែរ',
+        titleColor: Colors.black,
+        descripColor: const Color(0xFF929794),
+        imagePath: 'assets/onboarding3.jpg',
+      ),
     ];
     return list;
   }

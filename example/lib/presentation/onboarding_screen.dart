@@ -1,8 +1,9 @@
 library sk_onboarding_screen;
 
 import 'package:animate_do/animate_do.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:example/presentation/Animation/imageAnimate.dart';
 import 'package:example/presentation/Home_screen.dart';
+import 'package:example/presentation/Animation/textAnimate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:example/model/sk_onboarding_model.dart';
@@ -58,13 +59,15 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
 
   Widget _indicator(bool isActive) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 150),
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      duration: Duration(milliseconds: 200),
+      margin: EdgeInsets.symmetric(horizontal: 10),
       height: 8.0,
-      width: isActive ? 24.0 : 16.0,
+      width: isActive ? 30.0 : 20.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.black : Colors.grey,
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        color: isActive ? Colors.deepPurple[700] : Colors.grey,
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
       ),
     );
   }
@@ -75,85 +78,96 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
       backgroundColor: widget.bgColor,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
-        child: SafeArea(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerRight,
-                    // ignore: deprecated_member_use
-                    child: FlatButton(
-                      onPressed: () {
-                        widget.skipClicked("Skip Tapped");
-                      },
-                      child: Text(
-                        'Skip',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 40,
                       ),
-                    ),
-                  ),
-                  Container(
-                    height: 800,
-                    color: Colors.transparent,
-                    child: PageView(
-                        physics: ClampingScrollPhysics(),
-                        controller: _pageController,
-                        onPageChanged: (int page) {
-                          setState(() {
-                            _currentPage = page;
-                          });
-                        },
-                        children: buildOnboardingPages()),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _buildPageIndicator(),
-                  ),
-                  _currentPage != widget.pages.length - 1
-                      ? Expanded(
-                          child: Align(
-                            alignment: FractionalOffset.bottomRight,
-                            child: Padding(
-                              padding: EdgeInsets.only(right: 20, bottom: 10),
-                              child: FloatingActionButton(
-                                backgroundColor: Colors.black,
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: widget.themeColor,
+                      // Container(
+                      //   alignment: Alignment.centerRight,
+                      //   // ignore: deprecated_member_use
+                      //   child: FlatButton(
+                      //     onPressed: () {
+                      //       widget.skipClicked("Skip Tapped");
+                      //     },
+                      //     child: Text(
+                      //       'Skip',
+                      //       style: TextStyle(
+                      //         fontWeight: FontWeight.w500,
+                      //         color: Colors.black,
+                      //         fontSize: 20,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      Container(
+                        height: 800,
+                        color: Colors.transparent,
+                        child: PageView(
+                            physics: ClampingScrollPhysics(),
+                            controller: _pageController,
+                            onPageChanged: (int page) {
+                              setState(() {
+                                _currentPage = page;
+                              });
+                            },
+                            children: buildOnboardingPages()),
+                      ),
+                      SizedBox(
+                        height: 60,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _buildPageIndicator(),
+                      ),
+                      _currentPage != widget.pages.length - 1
+                          ? Expanded(
+                              child: Align(
+                                alignment: FractionalOffset.bottomRight,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.only(right: 40, bottom: 60),
+                                  child: FloatingActionButton(
+                                    backgroundColor: Colors.grey[300],
+                                    child: Icon(
+                                      Icons.arrow_forward,
+                                      size: 30,
+                                      color: Colors.deepPurple[700],
+                                    ),
+                                    onPressed: () {
+                                      _pageController.nextPage(
+                                        duration: Duration(milliseconds: 600),
+                                        curve: Curves.linear,
+                                      );
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  _pageController.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.ease,
-                                  );
-                                },
                               ),
-                            ),
-                          ),
-                        )
-                      : Text(''),
-                ],
-              ),
+                            )
+                          : Text(''),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ),
+          ],
         ),
       ),
       bottomSheet: _currentPage == widget.pages.length - 1
-          ? Container(color: Colors.white, child: _showGetStartedButton())
+          ? _showGetStartedButton()
           : Text(''),
     );
   }
 
   Widget _showPageData(SkOnboardingModel page) {
-    Tween<double> scaletween = Tween<double>(begin: 1, end: 2);
+    // ignore: unused_local_variable
+    Tween<double> scaletween = Tween<double>(begin: 0, end: 5);
     const colorizeColors = [
       Colors.purple,
       Colors.blue,
@@ -162,149 +176,123 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
     ];
 
     const colorizeTextStyle = TextStyle(
-      fontSize: 24.0,
+      fontSize: 28.0,
       fontFamily: 'Horizon',
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
     );
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(40.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            DefaultTextStyle(
-              style: const TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueAccent),
-              child: Center(
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    WavyAnimatedText('Welcome'),
-                  ],
-                  isRepeatingAnimation: true,
-                  onTap: () {
-                    print("Tap Event");
-                  },
+      child: Stack(
+        children: [
+          Positioned(
+            child: Container(
+              width: 1550,
+              height: 1300,
+              child: ImageAnimate(
+                colorizeTextStyle: colorizeTextStyle,
+                colorizeColors: colorizeColors,
+                image: page.imagePath,
+              ),
+            ),
+            right: -550,
+            top: -330,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Center(
+                child: TitleAnimate(
+                  colorizeColors: colorizeColors,
+                  colorizeTextStyle: colorizeTextStyle,
+                  titletop1: page.txtheader,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: 800,
-              child: Center(
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    ColorizeAnimatedText(
-                      'to KhmerDevelop',
-                      textStyle: colorizeTextStyle,
-                      colors: colorizeColors,
-                      speed: Duration(milliseconds: 200),
-                    ),
-                    ColorizeAnimatedText(
-                      'Enjoy Music with US',
-                      textStyle: colorizeTextStyle,
-                      colors: colorizeColors,
-                      speed: Duration(milliseconds: 200),
-                    ),
-                    ColorizeAnimatedText(
-                      'Volumn up and Feel the Music',
-                      textStyle: colorizeTextStyle,
-                      colors: colorizeColors,
-                      speed: Duration(milliseconds: 200),
-                    ),
-                  ],
-                  isRepeatingAnimation: true,
-                  onTap: () {
-                    print("Tap Event");
-                  },
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: TitleAnimate(
+                  colorizeColors: colorizeColors,
+                  colorizeTextStyle: colorizeTextStyle,
+                  titletop1: page.header,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 80,
-            ),
-            Center(
-              child: Container(
-                width: 250,
-                height: 200,
-                child: TweenAnimationBuilder(
-                    tween: scaletween,
-                    duration: Duration(seconds: 1),
-                    curve: Curves.linear,
-                    child: Image(
-                      image: AssetImage(page.imagePath),
-                      fit: BoxFit.contain,
-                    ),
-                    builder: (context, scale, child) {
-                      return Transform.scale(
-                        scale: scale,
-                        child: child,
-                      );
-                    }),
+              SizedBox(
+                height: 450,
               ),
-            ),
-            Spacer(),
-            SizedBox(
-              height: 40,
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.mic_rounded,
-                        size: 30,
-                        color: Colors.black,
-                      ),
-                      BounceInRight(
-                        child: Text(
-                          page.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: page.titleColor,
-                            fontSize: 22,
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 45),
+                    child: Row(
+                      children: [
+                        BounceInLeft(
+                          child: Icon(
+                            Icons.mic_rounded,
+                            size: 30,
+                            color: Colors.lightBlue,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        BounceInRight(
+                          child: Text(
+                            page.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              color: page.titleColor,
+                              fontSize: 26,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              TweenAnimationBuilder(
+                tween: Tween<double>(begin: 0, end: 1),
+                duration: Duration(milliseconds: 1500),
+                builder: (BuildContext context, double _value, Widget child) =>
+                    Opacity(
+                  opacity: _value,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 50,
+                      right: 20,
+                    ),
+                    child: FlipInX(
+                      child: Container(
+                        height: 150,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey[200],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 15, top: 10),
+                          child: BounceInUp(
+                            child: Text(
+                              page.description,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black54,
+                                fontSize: 20,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            FlipInX(
-              child: Container(
-                height: 200,
-                width: 500,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.black,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20, top: 10),
-                  child: BounceInUp(
-                    child: Text(
-                      page.description,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.orange,
-                        fontSize: 20,
-                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Spacer(),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -313,15 +301,16 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
     final GestureDetector loginButtonWithGesture = new GestureDetector(
       onTap: () => Get.to(HomeScreen()),
       child: new Container(
-        height: 50,
+        height: 60,
         decoration: new BoxDecoration(
-            color: Colors.red[200],
-            borderRadius: new BorderRadius.all(Radius.circular(6.0))),
+          color: Colors.deepPurple[400],
+          borderRadius: new BorderRadius.circular(30),
+        ),
         child: new Center(
           child: new Text(
-            'តោះចូលស្តាប់ជាមួយខ្ញុំ !!!',
+            'តោះស្តាប់កំសាន្តជាមួយខ្ញុំ',
             style: new TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold),
           ),
@@ -338,5 +327,50 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
   // ignore: unused_element
   void _getStartedTapped() {
     widget.getStartedClicked("Get Started Tapped");
+  }
+}
+
+///
+/// Author: Damodar Lohani
+/// profile: https://github.com/lohanidamodar
+///
+
+/// Clip widget in oval shape at right side
+class OvalRightBorderClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, 0);
+    path.lineTo(size.width - 40, 0);
+    path.quadraticBezierTo(
+        size.width, size.height / 4, size.width, size.height / 2);
+    path.quadraticBezierTo(size.width, size.height - (size.height / 4),
+        size.width - 40, size.height);
+    path.lineTo(0, size.height);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
+  }
+}
+
+class OvalTopBorderClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, 0);
+    path.lineTo(0, 40);
+    path.quadraticBezierTo(size.width / 4, 0, size.width / 2, 0);
+    path.quadraticBezierTo(size.width - size.width / 4, 0, size.width, 40);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
   }
 }
