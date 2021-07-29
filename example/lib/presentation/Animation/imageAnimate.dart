@@ -49,17 +49,17 @@ class ImageAnimate extends StatelessWidget {
   }
 }
 // #Animation Opacity
- // return TweenAnimationBuilder(
-    //   tween: Tween<double>(begin: 0, end: 1),
-    //   duration: Duration(seconds: 2),
-    //   builder: (BuildContext context, double _value, Widget child) => Opacity(
-    //     opacity: _value,
-    //     child: Padding(
-    //       padding: EdgeInsets.only(left: _value * 5),
-    //       child: Image(
-    //         image: AssetImage(image),
-    //         fit: BoxFit.fill,
-    //       ),
-    //     ),
-    //   ),
-    // );
+//  return TweenAnimationBuilder(
+//       tween: Tween<double>(begin: 0, end: 1),
+//       duration: Duration(seconds: 2),
+//       builder: (BuildContext context, double _value, Widget child) => Opacity(
+//         opacity: _value,
+//         child: Padding(
+//           padding: EdgeInsets.only(left: _value * 5),
+//           child: Image(
+//             image: AssetImage(image),
+//             fit: BoxFit.fill,
+//           ),
+//         ),
+//       ),
+//     );
