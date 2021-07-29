@@ -133,20 +133,20 @@ class SKOnboardingScreenState extends State<SKOnboardingScreen> {
                                 child: Padding(
                                   padding:
                                       EdgeInsets.only(right: 40, bottom: 60),
-                                  child: FloatingActionButton(
-                                    backgroundColor: Colors.grey[300],
-                                    child: Icon(
-                                      Icons.arrow_forward,
-                                      size: 30,
-                                      color: Colors.deepPurple[700],
-                                    ),
-                                    onPressed: () {
-                                      _pageController.nextPage(
-                                        duration: Duration(milliseconds: 600),
-                                        curve: Curves.linear,
-                                      );
-                                    },
-                                  ),
+                                  // child: FloatingActionButton(
+                                  //   backgroundColor: Colors.grey[300],
+                                  //   child: Icon(
+                                  //     Icons.arrow_forward,
+                                  //     size: 30,
+                                  //     color: Colors.deepPurple[700],
+                                  //   ),
+                                  //   onPressed: () {
+                                  //     _pageController.nextPage(
+                                  //       duration: Duration(milliseconds: 600),
+                                  //       curve: Curves.linear,
+                                  //     );
+                                  //   },
+                                  // ),
                                 ),
                               ),
                             )

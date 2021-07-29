@@ -17,26 +17,16 @@ class TitleAnimate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
-      curve: Curves.linear,
-      tween: Tween<EdgeInsetsGeometry>(
-        begin: EdgeInsets.only(left: 150),
-        end: EdgeInsets.only(left: 30),
-      ),
-      duration: Duration(milliseconds: 1500),
-      builder: (BuildContext context, EdgeInsetsGeometry _value, child) =>
-          Padding(
-        padding: _value,
-        child: AnimatedTextKit(
-          animatedTexts: [
-            ColorizeAnimatedText(
-              titletop1,
-              textStyle: colorizeTextStyle,
-              colors: colorizeColors,
-              speed: Duration(milliseconds: 200),
-            ),
-          ],
-          isRepeatingAnimation: true,
-          onTap: () {},
+      tween: Tween<double>(begin: 0, end: 1),
+      duration: Duration(seconds: 2),
+      builder: (BuildContext context, double _value, Widget child) => Opacity(
+        opacity: _value,
+        child: Padding(
+          padding: EdgeInsets.only(left: _value * 5),
+          child: Text(
+            titletop1,
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
